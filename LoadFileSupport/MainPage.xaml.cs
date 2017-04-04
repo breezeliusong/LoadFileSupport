@@ -31,13 +31,31 @@ namespace LoadFileSupport
 
         }
 
-        private async void loading(object sender, RoutedEventArgs e)
+
+        private async void LoadPackage(object sender, RoutedEventArgs e)
         {
             //loading file to app
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///AppxManifest.xml"));
             string text = await Windows.Storage.FileIO.ReadTextAsync(file);
             Debug.WriteLine(text);
             //Extract the information by using the String class
+            string source=(string)Application.Current.Resources["greeting"];
+
+        }
+
+        private async void LoadText(object sender, RoutedEventArgs e)
+        {
+            // Create sample file; replace if exists.
+            Windows.Storage.StorageFolder storageFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile sampleFile =
+                await storageFolder.CreateFileAsync("sample.Params",
+                    Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, "Swift as a shadow");
+
+            var file = storageFolder.GetFileAsync("sample.Params");
+            string text = await Windows.Storage.FileIO.ReadTextAsync(sampleFile);
+            Debug.Write(file.Id);
         }
     }
 }

@@ -4,5 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LoadFileSupport"
     RequestedTheme="Light">
-
+    <Application.Resources>
+        <x:String x:Key="greeting">Hello world</x:String>
+        <x:String x:Key="goodbye">Goodbye world</x:String>
+    </Application.Resources>
 </Application>
